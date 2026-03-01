@@ -1,0 +1,30 @@
+name: Deploy Databricks Pipeline via Terraform
+
+on:
+  push:
+    branches:
+      - main # (Change this to 'master' if your default branch is master)
+
+jobs:
+  deploy-pipeline:
+    runs-on: ubuntu-latest
+
+    # This pulls the secrets we saved in GitHub earlier!
+    env:
+      DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+      DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+
+    steps:
+      - name: Checkout Repository Code
+        uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+
+      - name: Terraform Init
+        working-directory: ./terraform
+        run: terraform init
+
+      - name: Terraform Apply
+        working-directory: ./terraform
+        run: terraform apply -auto-approve
