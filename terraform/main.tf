@@ -4,8 +4,7 @@ resource "databricks_job" "medallion_pipeline_job" {
   task {
     task_key = "bronze_ingestion"
     notebook_task {
-      # Use the 'Repos' path instead of 'Workspace/Users'
-      notebook_path = "/Repos/sulaipno97@gmail.com/Zero_Cost_Streaming_DataOps_Pipeline/src/bronze"
+      notebook_path = "/Workspace/Users/sulaipno97@gmail.com/Sulaiman/Zero-Cost Streaming DataOps Pipeline - Project 1/Zero_Cost_Streaming_DataOps_Pipeline/src/bronze.py"
     }
   }
 
@@ -15,7 +14,7 @@ resource "databricks_job" "medallion_pipeline_job" {
       task_key = "bronze_ingestion"
     }
     notebook_task {
-      notebook_path = "/Repos/sulaipno97@gmail.com/Zero_Cost_Streaming_DataOps_Pipeline/src/silver"
+      notebook_path = "/Workspace/Users/sulaipno97@gmail.com/Sulaiman/Zero-Cost Streaming DataOps Pipeline - Project 1/Zero_Cost_Streaming_DataOps_Pipeline/src/silver.py"
     }
   }
 
@@ -25,7 +24,7 @@ resource "databricks_job" "medallion_pipeline_job" {
       task_key = "silver_transformation"
     }
     notebook_task {
-      notebook_path = "/Repos/sulaipno97@gmail.com/Zero_Cost_Streaming_DataOps_Pipeline/src/gold"
+      notebook_path = "/Workspace/Users/sulaipno97@gmail.com/Sulaiman/Zero-Cost Streaming DataOps Pipeline - Project 1/Zero_Cost_Streaming_DataOps_Pipeline/src/gold.py"
     }
   }
 }
