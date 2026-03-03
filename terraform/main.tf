@@ -1,10 +1,11 @@
 resource "databricks_job" "medallion_pipeline_job" {
   name = "Automated_Medallion_Pipeline"
 
-  # We define a clean Serverless Python environment here
+  # The Serverless Environment block with the REQUIRED client version
   environment {
     environment_key = "serverless_python_env"
     spec {
+      client = "1" # This is the magic key Databricks was begging for!
       dependencies = [
         "pip"
       ]
